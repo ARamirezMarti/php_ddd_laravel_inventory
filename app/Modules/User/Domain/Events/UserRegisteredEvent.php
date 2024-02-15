@@ -8,6 +8,7 @@ class UserRegisteredEvent extends EventMessage
 
     public $queue = "inventory.user.1.user.registered";
     public $routingKey = 'inventory.user.1.user.registered';
+    public $exchange = 'user';
     
     public function __construct($message){
         parent::__construct($message);

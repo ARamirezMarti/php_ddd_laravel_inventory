@@ -10,7 +10,6 @@ class RabbitMqMessageBus implements EventBus
 {
     protected $connection;
     public $channel;
-    protected $exchange = 'domainEvents';
 
     public function __construct(){
         $this->connection = new AMQPStreamConnection(
@@ -22,14 +21,12 @@ class RabbitMqMessageBus implements EventBus
         $this->channel = $this->connection->channel();
 
     }
-    public function generateQueues(string $queue){
+    public function generateQueue(string $queue){
         $this->channel->queue_declare($queue, false, true, false, false);
 
     }
     public function generateExchanges(string $exchange){
         $this->channel->exchange_declare($exchange, 'direct', false, true, false);
-
-
     }
 
     public function publish($event)
@@ -37,9 +34,9 @@ class RabbitMqMessageBus implements EventBus
         $event->id = 4;
         $msg = new AMQPMessage($event->serialize());
         $this->channel = $this->connection->channel();
-        $this->channel->queue_bind($event->queue, $this->exchange, $event->routingKey);
+        $this->channel->queue_bind($event->queue, $event->exchange, $event->routingKey);
         
-        $this->channel->basic_publish($msg, $this->exchange, $event->routingKey);
+        $this->channel->basic_publish($msg, $event->exchange, $event->routingKey);
     }
 
 

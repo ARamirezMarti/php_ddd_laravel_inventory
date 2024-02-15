@@ -16,15 +16,18 @@ class AppServiceProvider extends ServiceProvider
     {
 
         $exchangesAndQueues = [
-            ''noexp.user.1.user.registered'
+            'user' => [
+                'inventory.user.1.user.registered'
+            ]
         ];
 
         $rabbit = new RabbitMqMessageBus();
-        
-        $this->channel->exchange_declare($this->exchange, 'direct', false, true, false);
 
-        foreach ($queues as $queue) {
-            $rabbit->generateQueue($queue);
+        foreach ($exchangesAndQueues as $exchange => $queues) {
+            $rabbit->generateExchanges($exchange);
+            foreach ($queues as $queue) {
+                $rabbit->generateQueue($queue);
+            }
         }
     }
 
