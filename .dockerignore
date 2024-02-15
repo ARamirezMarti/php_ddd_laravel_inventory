@@ -1,0 +1,8 @@
+./vendor
+./git
+.gitignore
+./tests
+phpunit.xml
+README.md
+.env.example
+docker-compose.yml

@@ -1,0 +1,102 @@
+version: '3'
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: inventory-nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    depends_on:
+      - db
+      - rabbitmq
+      - redis
+    networks:
+      - backend
+  app:
+    build:
+      args:
+        user: tony
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    container_name: inventory-app    
+    image: inventory 
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www    
+    networks:
+      - backend 
+
+  db:
+    image: mysql:8
+    container_name: inventory-db    
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./data/mysql-data:/var/lib/mysql
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: inventory-rabbit
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./data/rabbit-data:/var/lib/rabbitmq
+    networks:
+      - backend
+
+  redis:
+    image: redis:latest
+    container_name: inventory-redis
+    ports:
+      - 6379:6379
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: inventory-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  supervisor:
+      build:
+        context: .
+        dockerfile: docker-compose/supervisor/dockerfile
+      container_name: inventory-supervisord-worker
+      volumes:
+        - ./:/var/www   
+        - ./data/supervisord-data/logs:/etc/supervisor/logs/
+      depends_on:
+        - rabbitmq
+      networks:
+        - backend
+volumes:
+  db_data:
+
+networks:
+  backend:
+    driver: bridge
