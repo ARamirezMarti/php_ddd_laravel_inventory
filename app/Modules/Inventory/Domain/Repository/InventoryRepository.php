@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Modules\Inventory\Domain\Repository;
+namespace Inventory\Domain\Repository;
 
-use App\Modules\Inventory\Domain\Entity\Inventory;
+use Inventory\Domain\Entity\Inventory;
 
 interface InventoryRepository
 {
     public function save( Inventory $inventory): void ;
+    public function delete(string $inventoryUuid): void ;
+    public function findByUuid(string $inventoryUuid): Inventory;
+
 }

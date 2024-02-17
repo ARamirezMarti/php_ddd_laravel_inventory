@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Inventory\Test\Unit;
+namespace Inventory\Test\Unit;
 
-use App\Modules\Inventory\Application\UseCases\createInventory;
-use App\Modules\Inventory\Domain\Entity\Inventory;
-use App\Modules\Inventory\Domain\Repository\InventoryRepository;
+use Inventory\Application\UseCases\createInventory;
+use Inventory\Domain\Entity\Inventory;
+use Inventory\Domain\Repository\InventoryRepository;
 use Hamcrest\Matchers;
 use Illuminate\Foundation\Testing\WithFaker;
 use Mockery;

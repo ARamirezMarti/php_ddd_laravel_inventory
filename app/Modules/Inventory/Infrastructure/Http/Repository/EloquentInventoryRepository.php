@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Modules\Inventory\Infrastructure\Http\Repository;
+namespace Inventory\Infrastructure\Http\Repository;
 
 use App\Models\Inventory as InventoryModel;
-use App\Modules\Inventory\Domain\Entity\Inventory;
-use App\Modules\Inventory\Domain\Repository\InventoryRepository;
+use Inventory\Domain\Entity\Inventory;
+use Inventory\Domain\Exceptions\InventoryNotFoundException;
+use Inventory\Domain\Repository\InventoryRepository;
 
 class EloquentInventoryRepository implements InventoryRepository
 {
@@ -14,5 +15,24 @@ class EloquentInventoryRepository implements InventoryRepository
 
         $model->save();
     }
+    public function delete(string $inventoryUuid): void
+    {
+        $model = InventoryModel::query()->where('uuid',$inventoryUuid)->first();
+        if(!$model){
+            throw new InventoryNotFoundException('Inventory not found');
+        }
+        $model->delete();
+    }
+
+    public function findByUuid(string $inventoryUuid): Inventory
+    {
+        $model = InventoryModel::query()->where('uuid',$inventoryUuid)->first();
+        if(!$model){
+            throw new InventoryNotFoundException('Inventory not found');
+        }
+        return $model->toEntity();
+    }
+    
+
 
 }

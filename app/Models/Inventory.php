@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Modules\Inventory\Domain\Entity\Inventory as EntityInventory;
+use Inventory\Domain\Entity\Inventory as EntityInventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

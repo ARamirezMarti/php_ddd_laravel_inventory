@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Inventory\Domain\Entity;
+namespace Inventory\Domain\Entity;
 
 class Inventory
 {

@@ -2,14 +2,13 @@
 
 namespace App\Modules\Inventory;
 
-use App\Modules\Inventory\Domain\Repository\InventoryRepository;
-use App\Modules\Inventory\Infrastructure\Http\Repository\EloquentInventoryRepository;
+use Inventory\Domain\Repository\InventoryRepository;
+use Inventory\Infrastructure\Http\Repository\EloquentInventoryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class InventoryServiceProvider extends ServiceProvider
 {
 
-    protected $namespace = 'App\Http\Controllers';
 
     public function register(): void
     {
