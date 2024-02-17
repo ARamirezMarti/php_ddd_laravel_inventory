@@ -4,6 +4,7 @@ namespace App\Modules\User\Infrastructure\MessageBus;
 use App\Modules\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use App\Modules\Shared\Domain\Events\EventMessage;
 
 
 class RabbitMqMessageBus implements EventBus
@@ -29,9 +30,8 @@ class RabbitMqMessageBus implements EventBus
         $this->channel->exchange_declare($exchange, 'direct', false, true, false);
     }
 
-    public function publish($event)
-    {
-        $event->id = 4;
+    public function publish(EventMessage $event)
+    {        
         $msg = new AMQPMessage($event->serialize());
         $this->channel = $this->connection->channel();
         $this->channel->queue_bind($event->queue, $event->exchange, $event->routingKey);

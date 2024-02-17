@@ -2,8 +2,11 @@
 
 namespace App\Modules\Shared\Domain\Events;
 
+use App\Modules\Shared\Domain\Events\EventMessage;
+
+
 interface EventBus
 {
-    public function publish($message);
+    public function publish(EventMessage $message);
     public function __destruct();
 }

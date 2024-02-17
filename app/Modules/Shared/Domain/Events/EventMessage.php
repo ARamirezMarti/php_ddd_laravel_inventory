@@ -8,6 +8,7 @@ abstract class EventMessage
     public  $message;
     public  $queue;
     public $routingKey;
+    public $exchange;
     
     public function __construct($message){
         $this->message = $message;
