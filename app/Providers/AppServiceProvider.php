@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Modules\User\Infrastructure\MessageBus\RabbitMqMessageBus;
+use App\Modules\Shared\Infrastructure\Events\MessageBus\RabbitMqMessageBus;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
         $exchangesAndQueues = [
             'user' => [
                 'inventory.user.1.user.registered'
+            ],
+            'inventory' => [
+                'inventory.inventory.1.user.created.inventory'
             ]
         ];
 
@@ -29,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 $rabbit->generateQueue($queue);
             }
         }
+        
     }
 
     /**
@@ -38,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         //
     }
 }

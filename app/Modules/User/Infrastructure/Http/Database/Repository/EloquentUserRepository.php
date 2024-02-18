@@ -24,4 +24,13 @@ class EloquentUserRepository implements UserRepository
         
         return $User->toEntity();
     }
+
+    public function increaseInventory(string $user_id): void {
+
+        $user = User::query()->where('id',$user_id)->first();
+        
+        $user->update(['inventories_count' => $user->inventories_count+1]);
+
+    } 
+
 }

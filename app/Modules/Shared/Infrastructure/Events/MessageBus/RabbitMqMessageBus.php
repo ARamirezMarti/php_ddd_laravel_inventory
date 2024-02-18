@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Modules\User\Infrastructure\MessageBus;
+namespace App\Modules\Shared\Infrastructure\Events\MessageBus;
+
 use App\Modules\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
-use App\Modules\Shared\Domain\Events\EventMessage;
-
 
 class RabbitMqMessageBus implements EventBus
 {
     protected $connection;
     public $channel;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->connection = new AMQPStreamConnection(
             env('RABBITMQ_HOST'),
             env('RABBITMQ_PORT'),
@@ -22,23 +22,24 @@ class RabbitMqMessageBus implements EventBus
         $this->channel = $this->connection->channel();
 
     }
-    public function generateQueue(string $queue){
+    public function generateQueue(string $queue)
+    {
         $this->channel->queue_declare($queue, false, true, false, false);
 
     }
-    public function generateExchanges(string $exchange){
+    public function generateExchanges(string $exchange)
+    {
         $this->channel->exchange_declare($exchange, 'direct', false, true, false);
     }
 
-    public function publish(EventMessage $event)
-    {        
-        $msg = new AMQPMessage($event->serialize());
+    public function publish(mixed $event)
+    {
+        $msg           = new AMQPMessage($event->serialize());
         $this->channel = $this->connection->channel();
         $this->channel->queue_bind($event->queue, $event->exchange, $event->routingKey);
-        
         $this->channel->basic_publish($msg, $event->exchange, $event->routingKey);
-    }
 
+    }
 
     public function __destruct()
     {
