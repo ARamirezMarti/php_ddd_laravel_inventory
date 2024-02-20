@@ -2,7 +2,7 @@
 
 namespace App\Modules\User\Domain\Subcribers;
 
-use App\Modules\Shared\Domain\Subscribers\EventSubscriber;
+use App\Modules\Shared\Application\Subscribers\EventSubscriber;
 use App\Modules\Inventory\Domain\Events\userCreatedInventory;
 use App\Modules\User\Application\UseCase\UserInventoryIncrease;
 

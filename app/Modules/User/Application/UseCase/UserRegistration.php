@@ -2,9 +2,8 @@
 
 namespace User\Application\UseCase;
 
-use App\Modules\Shared\Domain\Events\EventBus;
+use App\Modules\Shared\Application\Events\EventBus;
 use App\Modules\Shared\Domain\UuidGenerator;
-use App\Modules\User\Domain\Entity\user;
 use App\Modules\User\Domain\Events\UserRegisteredEvent;
 use App\Modules\User\Domain\Hasher\DomainHasherInterface;
 use App\Modules\User\Domain\Repository\UserRepository;

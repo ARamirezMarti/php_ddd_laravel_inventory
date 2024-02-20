@@ -3,7 +3,7 @@
 namespace Inventory\Application\UseCases;
 
 use App\Modules\Inventory\Domain\Events\userCreatedInventory;
-use App\Modules\Shared\Domain\Events\EventBus;
+use App\Modules\Shared\Application\Events\EventBus;
 use App\Modules\Shared\Domain\UuidGenerator;
 use Inventory\Domain\Entity\Inventory;
 use Inventory\Domain\Repository\InventoryRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Shared\Domain\Events;
+namespace App\Modules\Shared\Application\Events;
 
 abstract class EventMessage
 {

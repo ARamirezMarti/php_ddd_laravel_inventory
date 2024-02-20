@@ -2,7 +2,7 @@
 
 namespace App\Modules\Shared\Infrastructure\Events\MessageBus;
 
-use App\Modules\Shared\Domain\Events\EventBus;
+use App\Modules\Shared\Application\Events\EventBus;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 

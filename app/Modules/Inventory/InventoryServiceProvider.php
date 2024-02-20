@@ -5,7 +5,7 @@ namespace App\Modules\Inventory;
 use Inventory\Domain\Repository\InventoryRepository;
 use Inventory\Infrastructure\Http\Repository\EloquentInventoryRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Modules\Shared\Domain\Events\EventBus;
+use App\Modules\Shared\Application\Events\EventBus;
 use App\Modules\Shared\Domain\UuidGenerator;
 use App\Modules\Shared\Infrastructure\Events\MessageBus\RabbitMqMessageBus;
 use App\Modules\Shared\Infrastructure\RamseyUuidCreator;

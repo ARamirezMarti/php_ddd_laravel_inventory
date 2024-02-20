@@ -2,7 +2,7 @@
 
 namespace App\Modules\Inventory\Domain\Events;
 
-use App\Modules\Shared\Domain\Events\EventMessage;
+use App\Modules\Shared\Application\Events\EventMessage;
 
 class userCreatedInventory extends EventMessage
 {
