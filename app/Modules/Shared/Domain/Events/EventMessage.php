@@ -4,13 +4,13 @@ namespace App\Modules\Shared\Domain\Events;
 
 abstract class EventMessage
 {
-    public string $queue ="";
-    public string $id;
+    public string $queue = "";
     public string $routingKey;
     public string $exchange;
 
-    public function __construct()
-    {
+    public function __construct(
+        public string $id
+    ) {
     }
 
     public function serialize()

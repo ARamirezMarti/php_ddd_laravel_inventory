@@ -11,7 +11,7 @@ class userCreatedInventory extends EventMessage
     public string $routingKey   = 'inventory.inventory.1.created.inventory';
     public string $exchange     = 'inventory';
 
-    public function __construct(public string $user_id)
+    public function __construct( public string $id,public string $user_id)
     {
     }
 

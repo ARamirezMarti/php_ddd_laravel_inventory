@@ -11,7 +11,7 @@ class UserRegisteredEvent extends EventMessage
     public string $routingKey = 'inventory.user.1.user.registered';
     public string $exchange   = 'user';
 
-    public function __construct(public object $user)
+    public function __construct( public string $id,public object $user)
     {
     }
 
