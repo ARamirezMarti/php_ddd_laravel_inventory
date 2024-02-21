@@ -2,6 +2,7 @@
 
 namespace App\Modules\Shared\Infrastructure\Events;
 
+use App\Modules\User\Domain\Subcribers\decreaseUserInventoryOnInventoryDeleted;
 use App\Modules\User\Domain\Subcribers\IncreaseUserInventoryOnInventoryCreated;
 use App\Modules\User\Domain\Subcribers\SendEmailOnUserRegistered;
 
@@ -12,6 +13,7 @@ class EventsMapping
         return [
             IncreaseUserInventoryOnInventoryCreated::class,
             SendEmailOnUserRegistered::class,
+            decreaseUserInventoryOnInventoryDeleted::class,
         ];
     }
 }

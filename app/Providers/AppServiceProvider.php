@@ -20,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
                 'inventory.user.1.user.registered'
             ],
             'inventory' => [
-                'inventory.inventory.1.user.created.inventory'
+                'inventory.inventory.1.user.created.inventory',
+                'inventory.inventory.1.user.deleted.inventory'
             ]
         ];
 
