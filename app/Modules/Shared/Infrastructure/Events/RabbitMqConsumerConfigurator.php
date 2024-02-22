@@ -14,8 +14,8 @@ class RabbitMqConsumerConfigurator
             $subscribedTo = $subcriber->subscribedTo();
 
             foreach ($subscribedTo as $event) {
-                $testo      = new \ReflectionClass($event);
-                $eventQueue = $testo->getDefaultProperties()['queue'];
+                $reflectedEvent      = new \ReflectionClass($event);
+                $eventQueue = $reflectedEvent->getDefaultProperties()['queue'];
 
                 if ($queue == $eventQueue) {
                     array_push($subscribers, $subcriber);

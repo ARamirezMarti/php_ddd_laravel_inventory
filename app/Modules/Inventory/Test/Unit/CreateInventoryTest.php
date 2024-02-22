@@ -10,7 +10,7 @@ use Hamcrest\Matchers;
 use Illuminate\Foundation\Testing\WithFaker;
 use Mockery;
 use Tests\TestCase;
-use App\Modules\Shared\Domain\Events\EventBus;
+use App\Modules\Shared\Application\Events\EventBus;
 use App\Modules\Shared\Domain\UuidGenerator;
 
 class CreateInventoryTest extends TestCase
@@ -41,7 +41,6 @@ class CreateInventoryTest extends TestCase
             'description' => $this->faker->text(),
 
         ];
-
         
         $this->inventoryRepositoryMock
             ->shouldReceive('save')
