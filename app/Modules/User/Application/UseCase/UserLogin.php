@@ -18,6 +18,6 @@ class UserLogin
 
         $user = $this->userRepository->findByEmail($userEmail);
         $this->hasher->validate($userPass, $user->password);
-
+        return $user;
     }
 }

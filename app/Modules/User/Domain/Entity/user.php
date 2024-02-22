@@ -5,6 +5,7 @@ namespace App\Modules\User\Domain\Entity;
 class user
 {
     public function __construct(
+        public string $id,
         public string $name,
         public string $lastname,
         public string $email,

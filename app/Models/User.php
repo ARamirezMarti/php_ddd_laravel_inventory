@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps = false;
-        /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -23,9 +23,9 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
-        'inventories_count'
+        'inventories_count',
     ];
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -42,12 +42,13 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',  
+        'email_verified_at' => 'datetime',
     ];
 
     public function toEntity(): EntityUser
     {
         return new EntityUser(
+            $this->id,
             $this->name,
             $this->lastname,
             $this->email,
@@ -55,4 +56,16 @@ class User extends Authenticatable
         );
 
     }
+    public static function fromEntity($entity): self
+    {
+        return new self([
+            'id'       => $entity->id,
+            'name'     => $entity->name,
+            'lastname' => $entity->lastname,
+            'email'    => $entity->email,
+            'password' => $entity->password,
+        ]
+        );
+    }
+
 }
