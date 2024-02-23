@@ -20,7 +20,9 @@ class Inventory extends Model
         'name',
         'description'
     ];
-    
+    protected static $filterableFields = [
+        'name'
+    ];
 
     public static function getInventoriesByUserId($user_id){
         return self::query()->where('user_id', '=', $user_id)->get();

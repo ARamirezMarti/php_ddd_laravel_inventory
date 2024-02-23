@@ -6,10 +6,39 @@ use \Illuminate\Database\Query\Builder;
 
 class Criteria
 {
-       public static function fromValues($filters){
+    public const OPERATORS = [
+        '=' => '=',
+        '!=' => '!=',
+        '>' => '>',
+        '<' => '<',
+        'lk'=> 'LIKE'
         
+    ];
+      
+    public static function operator($operator)
+    {
+        return static::OPERATORS[$operator] ?? '=';
+    }
 
-        foreach ($filters as $filter) {
+    public static function fromValues(array $criteriaValues)
+    {
+        $criteria = [];
+        foreach ($criteriaValues as $criteriaValue) {
+
+                $key = $criteriaValue->getKey();
+                $operator = self::operator($criteriaValue->getOperator());
+                $value = $criteriaValue->getValue();                
+                self::mutatesValue($operator,$value);
+                $criteria[] = new CriteriaFilter($key, $value, $operator);
+        }
+        return $criteria;
+    }
+
+    public static  function mutatesValue($operator,&$value){
+
+        if($operator == 'LIKE'){
+            $value = "%{$value}%";
         }
     }
+    
 }
