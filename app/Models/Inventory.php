@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Modules\Shared\Domain\Criteria\AppliesCriteria;
 use Inventory\Domain\Entity\Inventory as EntityInventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     use HasFactory;
+    use AppliesCriteria;
     protected $table = 'inventory';
     public $timestamps = false;
 
