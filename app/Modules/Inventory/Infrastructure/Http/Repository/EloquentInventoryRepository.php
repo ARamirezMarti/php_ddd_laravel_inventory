@@ -32,6 +32,14 @@ class EloquentInventoryRepository implements InventoryRepository
         }
         return $model->toEntity();
     }
+
+    public function findByCriteria(array $Criteria): array {
+
+        $inventories = InventoryModel::searchWithCriteria($Criteria)->get();
+
+        return $inventories->map->toEntity()->toArray();
+    }
+
     
 
 
