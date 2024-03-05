@@ -31,7 +31,7 @@ return (new \PhpCsFixer\Config())
 
         //Risky rules
         'array_push' => true,
-        'declare_strict_types' => true,
+        'declare_strict_types' => false,
         'ereg_to_preg' => true,
         'get_class_to_class_keyword' => true,
         'implode_call' => true,
