@@ -9,8 +9,6 @@ class user
         public string $name,
         public string $lastname,
         public string $email,
-        public string $password
-    ){
-
-    }
+        public string $password,
+    ) {}
 }

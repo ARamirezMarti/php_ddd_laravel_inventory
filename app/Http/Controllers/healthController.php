@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Redis;
 
 class healthController extends Controller
 {
-    public function __invoke(){
-       // dd(config());
+    public function __invoke()
+    {
 
-        return new Response(Redis::get('name'),Response::HTTP_OK);
+        return new Response(Redis::get('name'), Response::HTTP_OK);
     }
 }

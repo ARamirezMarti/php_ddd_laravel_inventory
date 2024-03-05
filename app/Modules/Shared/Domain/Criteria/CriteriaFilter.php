@@ -4,17 +4,20 @@ namespace App\Modules\Shared\Domain\Criteria;
 
 class CriteriaFilter
 {
-    public function __construct(private string $key, private string $value, private string $operator = '=')
-    {
+    public function __construct(private string $key, private string $value, private string $operator = '=') {}
 
-    }
-    public function getKey(){
+    public function getKey()
+    {
         return $this->key;
     }
-    public function getOperator(){
+
+    public function getOperator()
+    {
         return $this->operator;
     }
-    public function getValue(){
+
+    public function getValue()
+    {
         return $this->value;
     }
 }

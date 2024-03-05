@@ -6,7 +6,6 @@ use App\Modules\Shared\Infrastructure\Request\CriteriaRequest;
 
 class GetAllInventoriesRequest extends CriteriaRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,8 +24,6 @@ class GetAllInventoriesRequest extends CriteriaRequest
     public function rules()
     {
         return [
-            //
         ];
     }
-
 }

@@ -15,10 +15,12 @@ class EloquentInventoryRepository implements InventoryRepository
 
         $model->save();
     }
+
     public function delete(string $inventoryUuid): void
     {
-        $model = InventoryModel::query()->where('uuid',$inventoryUuid)->first();
-        if(!$model){
+        $model = InventoryModel::query()->where('uuid', $inventoryUuid)->first();
+
+        if (!$model) {
             throw new InventoryNotFoundException('Inventory not found');
         }
         $model->delete();
@@ -26,21 +28,19 @@ class EloquentInventoryRepository implements InventoryRepository
 
     public function findByUuid(string $inventoryUuid): Inventory
     {
-        $model = InventoryModel::query()->where('uuid',$inventoryUuid)->first();
-        if(!$model){
+        $model = InventoryModel::query()->where('uuid', $inventoryUuid)->first();
+
+        if (!$model) {
             throw new InventoryNotFoundException('Inventory not found');
         }
+
         return $model->toEntity();
     }
 
-    public function findByCriteria(array $Criteria): array {
-
+    public function findByCriteria(array $Criteria): array
+    {
         $inventories = InventoryModel::searchWithCriteria($Criteria)->get();
 
         return $inventories->map->toEntity()->toArray();
     }
-
-    
-
-
 }

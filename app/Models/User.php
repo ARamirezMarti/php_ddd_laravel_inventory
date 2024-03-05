@@ -10,7 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     public $timestamps = false;
     /**
@@ -52,20 +54,20 @@ class User extends Authenticatable
             $this->name,
             $this->lastname,
             $this->email,
-            $this->password
+            $this->password,
         );
-
     }
+
     public static function fromEntity($entity): self
     {
-        return new self([
-            'id'       => $entity->id,
-            'name'     => $entity->name,
-            'lastname' => $entity->lastname,
-            'email'    => $entity->email,
-            'password' => $entity->password,
-        ]
+        return new self(
+            [
+                'id'       => $entity->id,
+                'name'     => $entity->name,
+                'lastname' => $entity->lastname,
+                'email'    => $entity->email,
+                'password' => $entity->password,
+            ],
         );
     }
-
 }

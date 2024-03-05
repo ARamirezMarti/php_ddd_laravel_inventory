@@ -13,17 +13,15 @@ class createInventory
     public function __construct(
         private InventoryRepository $inventoryRepository,
         private EventBus $eventBus,
-        private UuidGenerator $uuidGenerator
+        private UuidGenerator $uuidGenerator,
     ) {}
 
-    public function __invoke(string $Uuid, string $user_id, string $name, string $description)
+    public function __invoke(string $Uuid, string $user_id, string $name, string $description): void
     {
-
         $inventory = new Inventory($Uuid, $user_id, $name, $description);
 
         $this->inventoryRepository->save($inventory);
 
-        $this->eventBus->publish(new userCreatedInventory($this->uuidGenerator->createUuid(),$user_id));
-
+        $this->eventBus->publish(new userCreatedInventory($this->uuidGenerator->createUuid(), $user_id));
     }
 }

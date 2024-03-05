@@ -6,5 +6,5 @@ namespace App\Modules\Shared\Application\Subscribers;
 
 interface EventSubscriber
 {
-	public static function subscribedTo(): array;
+    public static function subscribedTo(): array;
 }

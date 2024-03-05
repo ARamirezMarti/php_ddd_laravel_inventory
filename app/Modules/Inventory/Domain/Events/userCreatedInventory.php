@@ -6,13 +6,9 @@ use App\Modules\Shared\Application\Events\EventMessage;
 
 class userCreatedInventory extends EventMessage
 {
-
-    public string $queue = "inventory.inventory.1.user.created.inventory";
+    public string $queue = 'inventory.inventory.1.user.created.inventory';
     public string $routingKey   = 'inventory.inventory.1.created.inventory';
     public string $exchange     = 'inventory';
 
-    public function __construct( public string $id,public string $user_id)
-    {
-    }
-
+    public function __construct(public string $id, public string $user_id) {}
 }

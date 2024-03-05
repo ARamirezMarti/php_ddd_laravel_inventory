@@ -2,6 +2,6 @@
 
 namespace Inventory\Domain\Exceptions;
 
-class InventoryNotFoundException extends \Exception
-{
-}
+use Exception;
+
+class InventoryNotFoundException extends Exception {}

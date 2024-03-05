@@ -8,7 +8,8 @@ use Illuminate\Http\JsonResponse;
 
 class FailedResponse extends JsonResponse
 {
-    public function __construct($data ){
+    public function __construct($data)
+    {
         $status = $this->handleFailedReason($data);
         parent::__construct($data, $status);
     }
@@ -20,11 +21,8 @@ class FailedResponse extends JsonResponse
                 return JsonResponse::HTTP_FORBIDDEN;
             case $data instanceof UserNotFoundException:
                 return JsonResponse::HTTP_NOT_FOUND;
-            
-      
         }
-        
-        return $data;
 
+        return $data;
     }
 }

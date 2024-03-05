@@ -4,7 +4,7 @@ namespace Inventory\Domain\Entity;
 
 class Inventory
 {
-    public function __construct(private string $uuid,private string $userId,private string $name,private string $description){}
+    public function __construct(private string $uuid, private string $userId, private string $name, private string $description) {}
 
     public function getUuid()
     {

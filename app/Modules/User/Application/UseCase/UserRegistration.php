@@ -10,12 +10,11 @@ use App\Modules\User\Domain\Repository\UserRepository;
 
 class UserRegistration
 {
-
     public function __construct(
         private UserRepository $userRepository,
         private DomainHasherInterface $hasher,
         private EventBus $eventBus,
-        private UuidGenerator $uuidGenerator
+        private UuidGenerator $uuidGenerator,
     ) {
         $this->hasher = $hasher;
     }
@@ -27,9 +26,8 @@ class UserRegistration
         $user = $this->userRepository->register($UserData);
 
         $this->eventBus->publish(new UserRegisteredEvent(
-            $this->uuidGenerator->createUuid(), 
-            $user
+            $this->uuidGenerator->createUuid(),
+            $user,
         ));
-
     }
 }

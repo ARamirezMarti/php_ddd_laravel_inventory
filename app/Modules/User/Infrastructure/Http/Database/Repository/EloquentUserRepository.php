@@ -12,6 +12,7 @@ class EloquentUserRepository implements UserRepository
     public function register(array $UserData): EntityUser
     {
         $user = User::create($UserData);
+
         return $user->toEntity();
     }
 
@@ -19,8 +20,8 @@ class EloquentUserRepository implements UserRepository
     {
         $User = User::query()->where('email', $email)->first();
 
-        if (null == $User) {
-            throw new UserNotFoundException;
+        if (null === $User) {
+            throw new UserNotFoundException();
         }
 
         return $User->toEntity();
@@ -28,11 +29,9 @@ class EloquentUserRepository implements UserRepository
 
     public function increaseInventory(string $user_id): void
     {
-
         $user = User::query()->where('id', $user_id)->first();
 
         $user->update(['inventories_count' => $user->inventories_count + 1]);
-
     }
 
     public function decreaseInventory(string $user_id): void
@@ -40,7 +39,5 @@ class EloquentUserRepository implements UserRepository
         $user = User::query()->where('id', $user_id)->first();
 
         $user->update(['inventories_count' => $user->inventories_count - 1]);
-
     }
-
 }

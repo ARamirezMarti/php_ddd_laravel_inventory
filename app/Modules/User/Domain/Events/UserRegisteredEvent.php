@@ -6,13 +6,9 @@ use App\Modules\Shared\Application\Events\EventMessage;
 
 class UserRegisteredEvent extends EventMessage
 {
-
-    public string $queue      = "inventory.user.1.user.registered";
+    public string $queue      = 'inventory.user.1.user.registered';
     public string $routingKey = 'inventory.user.1.user.registered';
     public string $exchange   = 'user';
 
-    public function __construct( public string $id,public object $user)
-    {
-    }
-
+    public function __construct(public string $id, public object $user) {}
 }

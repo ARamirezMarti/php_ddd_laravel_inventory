@@ -11,5 +11,4 @@ class RamseyUuidCreator implements UuidGenerator
     {
         return Uuid::uuid4()->toString();
     }
-
 }

@@ -30,24 +30,25 @@ class CreateInventoryTest extends TestCase
     /**
      * @group inventory
      */
-    public function test_create_inventory()
+    public function testCreateInventory(): void
     {
         $inventory = new Inventory(
             $this->uuidGenerator->createUuid(),
             $this->faker->randomNumber(),
             $this->faker()->name(),
-            $this->faker()->text());
-        
+            $this->faker()->text(),
+        );
+
         $this->inventoryRepository->save($inventory);
 
-        $this->assertDatabaseHas(ModelsInventory::class,
-        [
-            'uuid' => $inventory->getUuid(),
-            'user_id' => $inventory->getUserId(),
-            'name' => $inventory->getName(),
-            'description' => $inventory->getDescription(),
-            ]
+        $this->assertDatabaseHas(
+            ModelsInventory::class,
+            [
+                'uuid' => $inventory->getUuid(),
+                'user_id' => $inventory->getUserId(),
+                'name' => $inventory->getName(),
+                'description' => $inventory->getDescription(),
+            ],
         );
     }
-
 }
