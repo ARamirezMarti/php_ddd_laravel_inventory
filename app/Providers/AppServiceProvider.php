@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+/* 
         $exchangesAndQueues = [
             'user' => [
                 'inventory.user.1.user.registered'
@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             foreach ($queues as $queue) {
                 $rabbit->generateQueue($queue);
             }
-        }
+        } */
         
     }
 

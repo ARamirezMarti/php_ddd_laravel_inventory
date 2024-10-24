@@ -25,7 +25,7 @@ class RabbitMqConsumerCommand extends Command
      * @var string
      */
     protected $description = 'RabbitMQ Consumer';
-    private $queue;
+    private string $queue;
 
     public function handle()
     {
